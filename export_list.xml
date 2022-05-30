@@ -1,0 +1,43 @@
+﻿<xml>
+    <OutputPath>C:\Temp\Export\</OutputPath>
+    <Debug>0</Debug>
+    <Companies>
+        <Company>
+            <name>Widgets</name>
+            <companyid>1</companyid>
+        </Company>
+      <Company>
+            <name>Contoso Inc</name>
+            <companyid>2</companyid>
+        </Company>     
+    </Companies>
+    <tables>
+        <table>
+            <service>Accounting</service>
+            <name>AccountingData</name>
+            <server>SQLServer01</server>
+            <database>AccountingDB</database>
+            <query>
+    SELECT * 
+        FROM dbo.Accounts as a
+        JOIN dbo.Ledger as l
+            ON a.companyid = l.companyid
+        WHERE a.companyid = @companyid
+            </query>
+        </table>
+        <table>
+            <service>Customers</service>
+            <name>CustomerData</name>
+            <server>CustomerDatabaseserver01</server>
+            <database>Customers</database>
+            <query>
+    SELECT 
+        c.name,
+        c.number,
+        c.email
+    FROM dbo.Customer
+    WHERE c.companyid = @companyid
+            </query>
+        </table>
+    </tables>
+</xml>
